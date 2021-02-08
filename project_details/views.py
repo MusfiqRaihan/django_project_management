@@ -220,6 +220,7 @@ def get_feature_payment(request, pid):
             }
             if request.method == "POST" and request.is_ajax():
                 payment = request.POST
+                print(payment['values'])
 
                 features = ProjectFeaturePayment.objects.create(
                     profile_name=user,
