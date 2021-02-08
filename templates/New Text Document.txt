@@ -1,0 +1,32 @@
+    if request.user.is_authenticated:
+        user = get_object_or_404(User, id=request.user.id)
+        if user.groups.filter(name__in=['admin', 'staff']).exists():
+            project_detail = ProjectDetail.objects.filter(profile_name=user.id).order_by('-created_on')
+            context = {
+                "username": user,
+                "add_project": project_detail,
+            }
+            return render(request, 'client/profile/index.html', context)
+        else:
+            raise Http404
+
+
+
+
+        if request.user.is_authenticated:
+        user = get_object_or_404(User, id=request.user.id)
+        if user.groups.filter(name__in=['admin', 'staff']).exists():
+            try:
+                user = get_object_or_404(User, id=request.user.id)
+                project = ProjectDetail.objects.get(id=pid, profile_name=user)
+
+                context = {
+                    "username": user,
+                    "add_project": project,
+                    "teams": ProjectTeamMember.objects.filter(project_name=project, profile_name=user).order_by(
+                        '-created_on'),
+                }
+                return render(request, 'project_details/team.html', context)
+
+            except:
+                raise Http404

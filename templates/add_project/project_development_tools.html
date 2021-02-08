@@ -1,0 +1,83 @@
+{% extends 'add_project/base.html' %}
+
+
+{% block title %}
+    Project Management - Add Project Development Tools
+{% endblock title %}
+
+
+{% block content %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h4>Add Project Details</h4>
+                </div>
+
+                <div class="container py-4">
+                    <div class="row justify-content-md-left">
+                        <div class="col-md-12">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <h5>Project Development Tools</h5>
+                                    <hr>
+                                    <select class="form-select form-select-lg mb-3" name="fronted">
+                                        <option selected="" disabled>Select Frontend</option>
+                                        {% for f in front %}
+                                        <option value="{{ f.development_name }}">{{ f.development_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <select class="form-select form-select-lg mb-3" name="backend">
+                                        <option selected="" disabled>Select Backend</option>
+
+                                        {% for b in back %}
+                                        <option value="{{ b.development_name }}">{{ b.development_name }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <select class="form-select form-select-lg mb-3" name="database">
+                                        <option selected="" disabled>Select Database</option>
+
+                                        {% for d in data %}
+                                        <option value="{{ d.development_name }}">{{ d.development_name }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <select class="form-select form-select-lg mb-3" name="server_side">
+                                        <option selected="" disabled>Select Server-side</option>
+
+                                        {% for s in server %}
+                                        <option value="{{ s.development_name }}">{{ s.development_name }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                    <select class="form-select form-select-lg" name="repository">
+                                        <option selected="" disabled>Select Repository</option>
+
+                                        {% for r in repo %}
+                                        <option value="{{ r.development_name }}">{{ r.development_name }}</option>
+                                        {% endfor %}
+
+                                    </select>
+                                </div>
+
+
+
+                                <div class="text-center">
+                                    <a href="{% url 'add-add_project-details' %}" class="btn btn-danger btn-style">Back To Project
+                                        Details</a>
+                                    <button type="submit" class="btn btn-success ml-2 btn-style">Submit
+                                        Tools</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </main>
+
+{% endblock content %}

@@ -1,0 +1,49 @@
+{% extends 'admin/profile/base.html' %}
+
+
+{% block title %}
+    Project Management - All Staffs Lists
+{% endblock title %}
+
+
+{% block content %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Staff Lists</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <a href="{% url 'add-staff' %}"
+                                class="btn btn-sm btn-outline-secondary">
+                                Add Staff
+                            </a>
+                        </div>
+                    </div>
+            </div>
+
+
+
+
+     <div class="row row-cols-1 row-cols-md-3 g-4">
+         {% for s in staff %}
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title">{{ s.username }}</h5>
+                <p>{{ s.first_name }}&nbsp;{{ s.last_name }}</p>
+                <p>{{ s.email }}</p>
+              </div>
+            </div>
+          </div>
+         {% endfor %}
+
+     </div>
+
+
+
+
+
+
+     </main>
+
+{% endblock content %}
+

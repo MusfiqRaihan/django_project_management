@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/progressbar.css' %}">
+
+    <style>
+        ul.dropdown-menu{
+            left: -80px;!important;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+    <header
+        class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a style="font-size:13px!important;" class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">ICT HUB PROJECT
+            MANAGEMENT</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
+
+
+        <div class="dropdown">
+          <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ username }}
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a class="dropdown-item" href="" style="font-size:14px;!important"><i style="padding-right: 5px;font-size:12px;" class="fas fa-user-circle"></i>My Profile</a></li>
+            <li><a class="dropdown-item" href="" style="font-size:14px;!important"><i style="padding-right: 5px;font-size:12px;" class="far fa-bell"></i>Notifications</a></li>
+            <li><a class="dropdown-item" href="{% url 'user-logout' %}" style="font-size:14px;!important"><i style="padding-right: 5px;font-size:12px;" class="fas fa-external-link-alt"></i>Sign out</a></li>
+          </ul>
+        </div>
+
+    </header>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" style="background:#212529!important;"
+                class="col-md-3 col-lg-2 d-md-block sidebar collapse ">
+                <div class="pt-3">
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="{% url 'project-details-overview' pid=add_project.id %}">
+                                <i class="fas fa-signal"></i>
+                                Overview
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="{% url 'project-client-details' pid=add_project.id %}">
+                                <i class="fas fa-user-tie"></i>
+                                Clients
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="{% url 'project-team-details' pid=add_project.id %}">
+                                <i class="fas fa-users"></i>
+                                Teams
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="">
+                                <i class="fas fa-handshake"></i>
+                                Meeting
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="{% url 'project-timeline' pid=add_project.id %}">
+                                <i class="fas fa-hourglass-half"></i>
+                                Timelines
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="{% url 'project-feedback' pid=add_project.id %}">
+                                <i class="far fa-address-card"></i>
+                                Feedback
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="{% url 'project-payment' pid=add_project.id %}">
+                                <i class="fab fa-btc"></i>
+                                Payments
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="{% url 'project-todo-list' pid=add_project.id %}">
+                                <i class="fas fa-clipboard-list"></i>
+                                ToDo list
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="">
+                                <i class="fas fa-tasks"></i>
+                                Reports
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6
+                        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span style="color:#ecf0f1;" >Saved reports</span>
+                        <a class="link-secondary" href="#" aria-label="Add a new report">
+                            <i class="fas fa-plus-circle"></i>
+                        </a>
+                    </h6>
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color:#dcdde1;" href="#">
+                                <i class="fas fa-file-alt"></i>
+                                Current month
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+
+
+    {% block content %}
+
+    {% endblock content %}
+
+
+        </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/feather.js' %}"></script>
+    <script src="{% static 'js/chart.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="https://kit.fontawesome.com/9744169897.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+

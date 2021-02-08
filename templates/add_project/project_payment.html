@@ -1,0 +1,69 @@
+{% extends 'add_project/base.html' %}
+
+
+{% block title %}
+    Project Management - Add Project Payment
+{% endblock title %}
+
+
+{% block content %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h4>Add Project Details</h4>
+        </div>
+
+        <div class="container py-4">
+            <div class="row justify-content-md-left">
+                <div class="col-md-12">
+                    <h5>Payment Details</h5>
+                        <div class="mb-3">
+                            <select onchange="myFunction()" id="reference" class="form-select form-select-lg mb-3" name="month_name">
+                                <option selected="" disabled>Select Method</option>
+                                {% for t in type %}
+                                <option value="{{ t.name }}">{{ t.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <hr>
+                        <br />
+
+
+
+                <script type="text/javascript">
+
+                    function myFunction() {
+
+                    let selected = document.getElementById("reference").value
+
+                        if (selected === 'Monthly Wise') {
+                            window.location.href = '/add_project/payment/type/monthly/' + {{ add_project.id }}
+                        }
+                        else if (selected === 'Features Wise') {
+                            window.location.href = '/add_project/payment/type/feature/' + {{ add_project.id }}
+                        }
+                    }
+
+                </script>
+
+
+
+
+
+
+                    <div class="text-center mt-5">
+                        <a href="{% url 'role-management' pid=add_project.id %}" class="btn btn-danger btn-style">Back To
+                            Role Management</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+{% endblock content %}

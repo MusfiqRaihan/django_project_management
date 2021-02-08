@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project Management - User Register Page</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Imbue:wght@300;400;500;800&display=swap" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+
+    <div class="container py-4">
+        <div class="row justify-content-md-center">
+            <h3 class="text-center mb-3">Register Panel</h3>
+            <div class="col-md-7">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label" style="font-size:18px;margin-left:10px;">Name</label>
+                        <input type="text" class="form-control" id="name" style="font-size:18px!important;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label" style="font-size:18px;margin-left:10px;">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" style="font-size:18px!important;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label" style="font-size:18px;margin-left:10px;">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" style="font-size:18px!important;">
+                    </div>
+                    <label for="phone" class="form-label" style="font-size:18px;margin-left:10px;">Mobile Number</label>
+                    <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon3">+880</span>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" maxlength="10" style="font-size:18px!important;">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label" style="font-size:18px;margin-left:10px;">Profile Picture</label>
+                        <input type="file" class="form-control" id="image">
+                    </div>
+                    <div class="mb-3">
+                        <label for="designation" class="form-label" style="font-size:18px;margin-left:10px;">Designation</label>
+                        <input type="text" class="form-control" id="designation" style="font-size:18px!important;">
+                    </div>
+
+
+                    <div class="text-center">
+                        <button type="submit" value="login" name="login" class="btn btn-danger btn-style">Login</button>
+                        <a href="" class="btn btn-success ml-2 btn-style">Register</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="https://kit.fontawesome.com/9744169897.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

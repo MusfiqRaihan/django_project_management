@@ -1,0 +1,55 @@
+{% extends 'user/project_details/base.html' %}
+
+{% block title %}
+    Project Management - make a todo list
+{% endblock title %}
+
+
+{% block content %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h2>Todo Lists</h2>
+            <div class="btn-toolbar mb-2 mb-md-0">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 400px;">TODO</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for t in todolist %}
+                        <tr>
+                            <th scope="row" style="width: 400px;">{{ t.todo }}</th>
+                            <th><a href="{% url 'todo-list-delete' pid=t.id %}" class="btn btn-danger btn-sm">Done</a></th>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="mb-5">
+                    <div class="modal-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                <textarea class="form-control" style="border-radius: 10px;" type="text" name="todolist" rows="2"></textarea>
+                                <button type="submit" class="btn btn-success mt-2">TODO</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+     </main>
+
+{% endblock content %}

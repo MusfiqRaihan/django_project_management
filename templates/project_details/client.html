@@ -1,0 +1,53 @@
+{% extends 'user/project_details/base.html' %}
+
+
+{% block title %}
+    Project Management - Client Page
+{% endblock title %}
+
+
+{% block content %}
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Clients</h1>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="col-md-12" style="font-size: 18px;">
+
+                        <h5 class="mb-4">Make Client Profile</h5>
+                        <input class="form-control mb-2" type="text" name="name" placeholder="Name">
+                        <input class="form-control mb-2" type="number" name="phone" placeholder="phone" maxlength="11">
+                        <input class="form-control mb-2" type="email" name="email" placeholder="Email">
+                        <input class="form-control mb-4" type="password" name="password" placeholder="Password">
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-outline-success btn-block">SUBMIT</button>
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+                <div class="col-md-12 py-5">
+                    <h4 class="mb-3">Clients Details</h4>
+                    <div class="row">
+                    {% for c in clients %}
+                    <div class="col-md-4 py-4">
+                        <p>Client Name: {{ c.client_name }}</p>
+                        <p>Client Email: {{ c.email }}</p>
+                        <p>Client Phone: {{ c.client_phone }}</p>
+                        <p>Client Password: {{ c.password }}</p>
+                        <p>Created By: {{ c.profile_name }}</p>
+                    </div>
+                    {% endfor %}
+                    </div>
+                </div>
+
+            </main>
+
+
+{% endblock content %}

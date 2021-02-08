@@ -1,0 +1,75 @@
+{% extends 'add_project/base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Project Management - Add Project Initial
+{% endblock title %}
+
+
+{% block content %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h4>Add Project Details</h4>
+        </div>
+
+        <div class="container py-4">
+            <div class="row justify-content-md-left">
+                <div class="col-md-12">
+                    <form action="" method="POST">
+                    {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.title|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.company_name|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.company_email|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.company_phone|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.company_address|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.start_date|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.completion_date|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.project_summary|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.project_goal|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+
+                            {{ form.project_impact|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+
+                            {{ form.project_requirement|as_crispy_field }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.development_methodology|as_crispy_field }}
+                        </div>
+
+
+                        <div class="text-center">
+                            <a href="{% url 'user-login' %}" class="btn btn-danger btn-style">Back to Home</a>
+                            <button type="submit" class="btn btn-success ml-2 btn-style">Submit Project Details</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+{% endblock content %}

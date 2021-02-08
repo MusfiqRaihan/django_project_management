@@ -1,0 +1,200 @@
+{% extends 'add_project/base.html' %}
+
+
+{% block title %}
+Project Management - Add Project feature Payment
+{% endblock title %}
+
+
+{% block content %}
+
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h4>Add Project Details</h4>
+    </div>
+
+    <div class="container py-4">
+        <div class="row justify-content-md-left">
+            <div class="col-md-12">
+                <h5>Payment Details</h5>
+                <div class="mb-3">
+                    <select onchange="myFunction()" id="reference" class="form-select form-select-lg mb-3"
+                        name="month_name">
+                        <option selected="" disabled>Select Method</option>
+                        {% for t in type %}
+                        <option value="{{ t.name }}">{{ t.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <hr>
+                <br />
+
+
+
+                <script type="text/javascript">
+
+                    function myFunction() {
+
+                        let selected = document.getElementById("reference").value;
+
+                        if (selected === 'Monthly Wise') {
+                            window.location.href = '/add_project/payment/type/monthly/' + {{ add_project.id }}
+                    } else if (selected === 'Features Wise') {
+                        window.location.href = '/add_project/payment/type/feature/' + {{ add_project.id }}
+                        }
+                    }
+
+                </script>
+
+
+
+                <div class="" id="feature">
+                    <h4>Features Wise Payment</h4>
+                    <button type="button" class="btn btn-outline-secondary add_form_field">
+                        Add Field
+                    </button>
+
+                    <div class="container1">
+
+                        <div class="row pt-3 pb-1 done">
+                            <div class="col-md-6">
+                                <input class="form-control mb-2" name='feature' type="text" placeholder="Feature Name">
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control mb-2" type="number" name='price' placeholder="Price">
+                            </div>
+                            <div class="col-md-2">
+                                <button onclick="deleteRow(this)" type="button" class="btn btn-danger delete"
+                                    style="border-radius: 25px;">Delete</button>
+                            </div>
+                        </div>
+                        <div class="row py-1 done">
+                            <div class="col-md-6">
+                                <input class="form-control mb-2" name='feature' type="text" placeholder="Feature Name">
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control mb-2" type="number" name='price' placeholder="Price">
+                            </div>
+                            <div class="col-md-2">
+                                <button onclick="deleteRow(this)" type="button" class="btn btn-danger delete"
+                                    style="border-radius: 25px;">Delete</button>
+                            </div>
+                        </div>
+                        <div class="row py-1 done">
+                            <div class="col-md-6">
+                                <input class="form-control mb-2" name='feature' type="text" placeholder="Feature Name">
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control mb-2" type="number" name='price' placeholder="Price">
+                            </div>
+                            <div class="col-md-2">
+                                <button onclick="deleteRow(this)" type="button" class="btn btn-danger delete"
+                                    style="border-radius: 25px;">Delete</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-5">
+                    <a href="{% url 'role-management' pid=add_project.id %}" class="btn btn-danger btn-style">Back To
+                        Role Management</a>
+                    <button type="submit" onClick='test()' class="btn btn-success ml-2 btn-style">Submit Payment</button>
+                </div>
+
+
+
+
+                <script>
+                    let x = 3;
+                    $(document).ready(function () {
+                        let max_fields = 10;
+                        let wrapper = $(".container1");
+                        let add_button = $(".add_form_field");
+
+                        $(add_button).click(function (e) {
+                            e.preventDefault();
+                            if (x < max_fields) {
+
+                                $(wrapper).append('<div class="row py-1 done">' +
+                                    '<div class="col-md-6">' +
+                                    '<input class="form-control mb-2" name="feature" type="text" placeholder="Feature Name">' +
+                                    '</div>' +
+                                    '<div class="col-md-4">' +
+                                    '<input class="form-control mb-2" type="number" name="price" placeholder="Price">' +
+                                    '</div>' +
+                                    '<div class="col-md-2">' +
+                                    '<button type="button" onclick="deleteRow(this)" class="btn btn-danger delete" style="border-radius: 25px;">Delete</button>' +
+                                    '</div>' +
+                                    '</div>'
+                                );
+                                ++x;
+                            } else {
+                                alert('You Reached the limits')
+                            }
+                        });
+
+
+
+
+                    });
+
+                    function deleteRow(btn) {
+                        let row = btn.parentNode.parentNode;
+                        let parent = row.parentNode;
+                        parent.removeChild(row);
+                        x--;
+                    }
+
+                    function test() {
+                        let feature = document.getElementsByName('feature');
+                        let price = document.getElementsByName('price');
+
+                        let output = []
+
+                        const dataLength = feature.length;
+
+                        for (let i = 0; i < dataLength; i++) {
+                            output.push({
+                                feature: feature[i].value,
+                                price: price[i].value,
+                            })
+
+                        }
+
+                        let postUrl = "/add_project/payment/type/feature/" + {{ add_project.id }}
+
+                        $.ajax({
+                            type: "POST",
+                             url:  postUrl,
+                            data: {
+                                'values': JSON.stringify(output),
+                                csrfmiddlewaretoken: '{{csrf_token}}'
+                            },
+                            datatype: 'json',
+                            success: function (data){
+                                window.location.href= "/add_project/payment/service/" + {{ add_project.id }}
+
+                            }
+                        });
+                    }
+
+
+                </script>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+
+
+{% endblock content %}

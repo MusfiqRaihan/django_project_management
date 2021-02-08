@@ -1,0 +1,90 @@
+{% extends 'admin/profile/base.html' %}
+
+
+{% block title %}
+    Project Management - Admin Dashboard
+{% endblock title %}
+
+
+{% block content %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div
+                    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group me-2">
+                            <a href="{% url 'add-add_project-details' %}" type="button"
+                                class="btn btn-sm btn-outline-secondary">
+                                Add New Project
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+        <div class="col-md-12">
+
+
+        {% for p in add_project %}
+
+            <div class="card mb-5">
+
+                <div class="row">
+                    <div class="col-md-2">
+
+                        <div class="progress blue"> <span class="progress-left"> <span
+                                    class="progress-bar"></span> </span> <span class="progress-right"> <span
+                                    class="progress-bar"></span> </span>
+                            <div class="progress-value">70%</div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h3 class="card-title"> {{ p.title }}</h3>
+                            <h5>Authorized by <b>{{ p.company_name }}</b></h5>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h5>Payment Status: </h5>
+                                </div>
+                                <div class="col-md-7">
+{#                                    {% for payment in ProjectPaymentDone.objects.all %}#}
+{#                                    <span style="font-size:14px;margin-left: -70px;margin-top:2px;"#}
+{#                                        class="badge bg-warning text-dark">Pending</span>#}
+{#                                        {{ payment.due }}#}
+{#                                     <span style="font-size:14px;margin-left: -70px;margin-top:2px;"#}
+{#                                        class="badge bg-success">Warning</span>#}
+{#                                    {% endfor %}#}
+                                </div>
+                            </div>
+
+                            <span>Start Date: {{ p.start_date|date }} ||</span>
+                            <span>Completion date: {{ p.completion_date }}</span><br>
+
+
+                            <a href="" class="btn btn-sm btn-outline-success"
+                                style="margin-top:8px;!important">Make Proposal</a>
+                            <a href="{% url 'project-details-overview' pid=p.id %}" class="btn btn-sm btn-outline-warning"
+                                style="margin-top:8px;!important">Project Details</a>
+                            <a href="{% url 'project-delete' pid=p.id %}" class="btn btn-sm btn-outline-danger"
+                                style="margin-top:8px;!important">Delete Project</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        {% endfor %}
+
+
+
+
+        </div>
+
+
+            </main>
+{% endblock content %}
+

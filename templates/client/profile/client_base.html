@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+</head>
+
+<body>
+    <header style="background-color:#2c2c54!important;"
+        class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a style="font-size:13px!important;" class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">ICT HUB PROJECT
+            MANAGEMENT</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a style="color:white!important;" class="nav-link" href="#"><i style="color:white!important;"
+                        class="fas fa-external-link-alt"></i> Sign out</a>
+            </li>
+        </ul>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" style="background:#d1ccc0!important;"
+                class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">
+                                <i class="fas fa-signal"></i>
+                                Project Status
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="client_profile.html">
+                                <i class="fas fa-user-tie"></i>
+                                Client Profile
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+
+            {% block content %}
+
+            {% endblock content %}
+
+        </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/feather.js' %}"></script>
+    <script src="{% static 'js/chart.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    <script src="https://kit.fontawesome.com/9744169897.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
