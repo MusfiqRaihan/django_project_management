@@ -1,0 +1,58 @@
+{% extends 'admin/profile/base.html' %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    Project Management - Development Methodology
+{% endblock title %}
+
+
+{% block content %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Development Methodology</h1>
+            </div>
+
+
+         <div class="row">
+
+             <div class="col-md-6">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form|crispy }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+
+                </form>
+            </div>
+
+             <div class="col-md-6">
+                 <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Development Method Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for m in methods %}
+
+                        <tr>
+                            <td>{{ m.name }}</td>
+                            <td><a href="{% url 'delete-development-method' pid=m.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+
+                        {% endfor %}
+                    </tbody>
+                </table>
+             </div>
+
+         </div>
+
+
+     </main>
+
+{% endblock content %}
+

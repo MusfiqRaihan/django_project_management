@@ -1,0 +1,61 @@
+{% extends 'admin/profile/base.html' %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    Project Management - All Developers Lists
+{% endblock title %}
+
+
+{% block content %}
+     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Developers Lists</h1>
+            </div>
+
+
+         <div class="row">
+
+             <div class="col-md-6">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form|crispy }}
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Register</button>
+
+                </form>
+            </div>
+
+             <div class="col-md-6">
+                 <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Designation</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in developers %}
+                        <tr>
+                            <td>{{ d.position }}</td>
+                            <td>{{ d.name }}</td>
+                            <td><a href="{% url 'delete-developers' pid=d.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+             </div>
+
+         </div>
+
+
+
+
+
+     </main>
+
+{% endblock content %}
+

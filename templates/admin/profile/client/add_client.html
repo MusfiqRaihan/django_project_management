@@ -1,0 +1,44 @@
+{% extends 'admin/profile/base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+
+{% block title %}
+    Project Management - Client Register Page
+{% endblock title %}
+
+
+
+{% block content %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Client Registration</h1>
+                </div>
+
+
+     <div class="container mb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        {{ form|crispy }}
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 d-grid">
+                            <a href="{% url 'all-client' %}" class="btn btn-danger">Cancel</a>
+                        </div>
+                        <div class="col-md-6 d-grid">
+                           <button type="submit" class="btn btn-success">Register</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    </main>
+
+{% endblock content %}
